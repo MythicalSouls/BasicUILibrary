@@ -219,35 +219,35 @@ end
 
 function createtab(context:string, thingtodo:thread, args:any)
 	args = args or nil
-	local context = Instance.new("TextButton")
-	context.Name = context
-	context.Size = UDim2.new(0, 200, 0, 50)
-	context.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	context.BorderSizePixel = 0
-	context.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-	context.FontSize = Enum.FontSize.Size14
-	context.TextSize = 14
-	context.TextColor3 = Color3.fromRGB(255, 255, 255)
-	context.Text = context
-	context.TextWrapped = true
-	context.TextWrap = true
-	context.Font = Enum.Font.Sarpanch
-	context.TextScaled = true
+	local contextt = Instance.new("TextButton")
+	contextt.Name = context
+	contextt.Size = UDim2.new(0, 200, 0, 50)
+	contextt.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	contextt.BorderSizePixel = 0
+	contextt.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	contextt.FontSize = Enum.FontSize.Size14
+	contextt.TextSize = 14
+	contextt.TextColor3 = Color3.fromRGB(255, 255, 255)
+	contextt.Text = context
+	contextt.TextWrapped = true
+	contextt.TextWrap = true
+	contextt.Font = Enum.Font.Sarpanch
+	contextt.TextScaled = true
 
 	local UICorner = Instance.new("UICorner")
-	UICorner.Parent = context
+	UICorner.Parent = contextt
 
 	local UIStroke = Instance.new("UIStroke")
 	UIStroke.Thickness = 3
-	UIStroke.Parent = context
+	UIStroke.Parent = contextt
 
 	local UIStroke1 = Instance.new("UIStroke")
 	UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	UIStroke1.Thickness = 3
-	UIStroke1.Parent = context
+	UIStroke1.Parent = contextt
 
-	context.Parent = scrf
-	context.MouseButton1Click:Connect(function()
+	contextt.Parent = scrf
+	contextt.MouseButton1Click:Connect(function()
 		for i,v in pairs(frame:FindFirstChild("DoThing"):GetChildren()) do
 			if v:IsA("TextBox") then
 				v:Destroy()
@@ -258,7 +258,7 @@ function createtab(context:string, thingtodo:thread, args:any)
 		end
 		thingtodo(args)
 	end)
-	return context
+	return contextt
 end
 
 _G.createtab = createtab

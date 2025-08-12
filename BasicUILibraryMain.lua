@@ -1,6 +1,6 @@
-local AbsolutionExecutorandDebuggers = Instance.new("ScreenGui")
-AbsolutionExecutorandDebuggers.Name = "BasicUILibrary"
-AbsolutionExecutorandDebuggers.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local BasicUILibrary = Instance.new("ScreenGui")
+BasicUILibrary.Name = "BasicUILibrary"
+BasicUILibrary.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local Frame = Instance.new("Frame")
 Frame.Size = UDim2.new(0.5043002, 0, 0.4345603, 0)
@@ -8,7 +8,7 @@ Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Frame.Position = UDim2.new(0.2885066, 0, 0.2822086, 0)
 Frame.BorderSizePixel = 0
 Frame.BackgroundColor3 = Color3.fromRGB(48, 48, 48)
-Frame.Parent = AbsolutionExecutorandDebuggers
+Frame.Parent = BasicUILibrary
 
 local UICorner = Instance.new("UICorner")
 UICorner.Parent = Frame
@@ -18,7 +18,7 @@ UIStroke.Thickness = 3
 UIStroke.Parent = Frame
 
 local ScrollingFrame = Instance.new("ScrollingFrame")
-ScrollingFrame.Size = UDim2.new(0, 860, 0, 54)
+ScrollingFrame.Size = UDim2.new(1.0000001, 0, 0.1270588, 0)
 ScrollingFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ScrollingFrame.BackgroundTransparency = 1
 ScrollingFrame.Active = true
@@ -27,6 +27,7 @@ ScrollingFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ScrollingFrame.ScrollingDirection = Enum.ScrollingDirection.X
 ScrollingFrame.CanvasSize = UDim2.new(2, 0, 2, 0)
 ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(0, 0, 0)
+ScrollingFrame.ScrollBarThickness = 5
 ScrollingFrame.Parent = Frame
 
 local UIListLayout = Instance.new("UIListLayout")
@@ -43,7 +44,7 @@ UIStroke1.Parent = ScrollingFrame
 
 local DoThing = Instance.new("ScrollingFrame")
 DoThing.Name = "DoThing"
-DoThing.Size = UDim2.new(0, 860, 0, 355)
+DoThing.Size = UDim2.new(1.0000001, 0, 0.8352942, 0)
 DoThing.BorderColor3 = Color3.fromRGB(0, 0, 0)
 DoThing.BackgroundTransparency = 1
 DoThing.Position = UDim2.new(0, 0, 0.1508924, 0)
@@ -80,7 +81,7 @@ HideOpen.TextWrapped = true
 HideOpen.TextWrap = true
 HideOpen.Font = Enum.Font.Sarpanch
 HideOpen.TextScaled = true
-HideOpen.Parent = AbsolutionExecutorandDebuggers
+HideOpen.Parent = BasicUILibrary
 
 local UICorner3 = Instance.new("UICorner")
 UICorner3.Parent = HideOpen
@@ -94,10 +95,9 @@ UIStroke4.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 UIStroke4.Thickness = 3
 UIStroke4.Parent = HideOpen
 
-AbsolutionExecutorandDebuggers.Parent = game.Players.LocalPlayer.PlayerGui
---AbsolutionExecutorandDebuggers.Parent = game:GetService("CoreGui")
+BasicUILibrary.Parent = game:GetService("CoreGui")
 
-local gui = AbsolutionExecutorandDebuggers
+local gui = BasicUILibrary
 HideOpen.MouseButton1Click:Connect(function()
 	if gui:FindFirstChildOfClass("Frame").Visible == true then
 		gui:FindFirstChildOfClass("Frame").Visible = false
@@ -143,112 +143,111 @@ end)
 local scrf = frame:FindFirstChild("ScrollingFrame")
 function singlebutton(context:string, parent:Instance, thingtodo:thread, args:any)
 	args = args or nil
-	local Executor = Instance.new("TextButton")
-	Executor.Name = context
-	Executor.Size = UDim2.new(0, 860, 0, 54)
-	Executor.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Executor.Position = UDim2.new(0, 0, 0, 0)
-	Executor.BorderSizePixel = 0
-	Executor.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-	Executor.FontSize = Enum.FontSize.Size14
-	Executor.TextSize = 14
-	Executor.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Executor.Text = context
-	Executor.TextWrapped = true
-	Executor.TextWrap = true
-	Executor.Font = Enum.Font.Sarpanch
-	Executor.TextScaled = true
+	local executor = Instance.new("TextButton")
+	executor.Name = context
+	executor.Size = UDim2.new(0, 860, 0, 54)
+	executor.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	executor.BorderSizePixel = 0
+	executor.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	executor.FontSize = Enum.FontSize.Size14
+	executor.TextSize = 14
+	executor.TextColor3 = Color3.fromRGB(255, 255, 255)
+	executor.Text = context
+	executor.TextWrapped = true
+	executor.TextWrap = true
+	executor.Font = Enum.Font.Sarpanch
+	executor.TextScaled = true
 
 	local UICorner = Instance.new("UICorner")
-	UICorner.Parent = Executor
+	UICorner.Parent = executor
 
 	local UIStroke = Instance.new("UIStroke")
 	UIStroke.Thickness = 3
-	UIStroke.Parent = Executor
+	UIStroke.Parent = executor
 
 	local UIStroke1 = Instance.new("UIStroke")
 	UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	UIStroke1.Thickness = 3
-	UIStroke1.Parent = Executor
+	UIStroke1.Parent = executor
 
-	Executor.Parent = parent
-	Executor.MouseButton1Click:Connect(function()
+	executor.Parent = parent
+	executor.MouseButton1Click:Connect(function()
 		thingtodo(args)
 	end)
-	return Executor
+	return executor
 end
 
 function singlebuttonwithtextbox(context:string, parent:Instance, thingtodo:thread, args:any)
 	args = args or nil
-	local a = singlebutton(context, parent)
-	local TextBox = Instance.new("TextBox")
-	TextBox.Name = context.." [Textbox]"
-	TextBox.Size = UDim2.new(0, 860, 0, 54)
-	TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	TextBox.BorderSizePixel = 0
-	TextBox.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-	TextBox.FontSize = Enum.FontSize.Size14
-	TextBox.TextWrapped = true
-	TextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-	TextBox.TextWrap = true
-	TextBox.TextSize = 14
-	TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
-	TextBox.PlaceholderText = "Enter ".."("..context..")"
-	TextBox.Text = ""
-	TextBox.CursorPosition = -1
-	TextBox.Font = Enum.Font.Sarpanch
-	TextBox.TextScaled = true
+	local a = singlebutton(context, parent) or _G.singlebutton(context, parent)
+	local aaaaadsdsadTextbox = Instance.new("TextBox")
+	aaaaadsdsadTextbox.Name = context.." [Textbox]"
+	aaaaadsdsadTextbox.Size = UDim2.new(0, 860, 0, 54)
+	aaaaadsdsadTextbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	aaaaadsdsadTextbox.BorderSizePixel = 0
+	aaaaadsdsadTextbox.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	aaaaadsdsadTextbox.FontSize = Enum.FontSize.Size14
+	aaaaadsdsadTextbox.TextWrapped = true
+	aaaaadsdsadTextbox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+	aaaaadsdsadTextbox.TextWrap = true
+	aaaaadsdsadTextbox.TextSize = 14
+	aaaaadsdsadTextbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+	aaaaadsdsadTextbox.PlaceholderText = "Enter ("..context..")"
+	aaaaadsdsadTextbox.Text = ""
+	aaaaadsdsadTextbox.CursorPosition = -1
+	aaaaadsdsadTextbox.Font = Enum.Font.Sarpanch
+	aaaaadsdsadTextbox.TextScaled = true
 
 	local UICorner = Instance.new("UICorner")
-	UICorner.Parent = TextBox
+	UICorner.Parent = aaaaadsdsadTextbox
 
 	local UIStroke = Instance.new("UIStroke")
 	UIStroke.Thickness = 3
-	UIStroke.Parent = TextBox
+	UIStroke.Parent = aaaaadsdsadTextbox
 
 	local UIStroke1 = Instance.new("UIStroke")
 	UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	UIStroke1.Thickness = 3
-	UIStroke1.Parent = TextBox
+	UIStroke1.Parent = aaaaadsdsadTextbox
 
-	TextBox.Parent = parent
+	aaaaadsdsadTextbox.Parent = parent
 	a.MouseButton1Click:Connect(function()
 		thingtodo(args)
 	end)
-	return {["Button"] = a, ["Box"] = TextBox}
+	return {["Button"] = a, ["Box"] = aaaaadsdsadTextbox}
 end
 
 function createtab(context:string, thingtodo:thread, args:any)
 	args = args or nil
-	local Debuggers = Instance.new("TextButton")
-	Debuggers.Name = context
-	Debuggers.Size = UDim2.new(0, 200, 0, 50)
-	Debuggers.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	Debuggers.BorderSizePixel = 0
-	Debuggers.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-	Debuggers.FontSize = Enum.FontSize.Size14
-	Debuggers.TextSize = 14
-	Debuggers.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Debuggers.Text = context
-	Debuggers.TextWrapped = true
-	Debuggers.TextWrap = true
-	Debuggers.Font = Enum.Font.Sarpanch
-	Debuggers.TextScaled = true
+	local context = Instance.new("TextButton")
+	context.Name = context
+	context.Size = UDim2.new(0, 200, 0, 50)
+	context.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	context.BorderSizePixel = 0
+	context.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	context.FontSize = Enum.FontSize.Size14
+	context.TextSize = 14
+	context.TextColor3 = Color3.fromRGB(255, 255, 255)
+	context.Text = context
+	context.TextWrapped = true
+	context.TextWrap = true
+	context.Font = Enum.Font.Sarpanch
+	context.TextScaled = true
 
 	local UICorner = Instance.new("UICorner")
-	UICorner.Parent = Debuggers
+	UICorner.Parent = context
 
 	local UIStroke = Instance.new("UIStroke")
 	UIStroke.Thickness = 3
-	UIStroke.Parent = Debuggers
+	UIStroke.Parent = context
 
 	local UIStroke1 = Instance.new("UIStroke")
 	UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	UIStroke1.Thickness = 3
-	UIStroke1.Parent = Debuggers
+	UIStroke1.Parent = context
 
-	Debuggers.Parent = scrf
-	Debuggers.MouseButton1Click:Connect(function()
+	context.Parent = scrf
+	context.MouseButton1Click:Connect(function()
 		for i,v in pairs(frame:FindFirstChild("DoThing"):GetChildren()) do
 			if v:IsA("TextBox") then
 				v:Destroy()
@@ -259,7 +258,7 @@ function createtab(context:string, thingtodo:thread, args:any)
 		end
 		thingtodo(args)
 	end)
-	return Debuggers
+	return context
 end
 
 _G.createtab = createtab

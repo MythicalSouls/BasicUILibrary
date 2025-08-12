@@ -1,9 +1,9 @@
---The main library code goes here
+--The main library loadstring goes here
 local function aaa()
-	singlebutton("Developer Console", DoThing, function()
+	_G.singlebutton("Developer Console", DoThing, function()
 		game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
 	end, nil)
-	singlebutton("RemoteEvent Inspection (Dev Console)", DoThing, function()
+	_G.singlebutton("RemoteEvent Inspection (Dev Console)", DoThing, function()
 		warn("activating RemoteEvent Inspection (Dev Console)")
 		local a
 		a = hookmetamethod(game, "__namecall", function(self, ...)
@@ -23,10 +23,10 @@ local function aaa()
 	end, nil)
 end
 local function executortabfunctions()
-	local aa = singlebuttonwithtextbox("Execute", DoThing, function() end, nil)
+	local aa = _G.singlebuttonwithtextbox("Execute", DoThing, function() end, nil)
 	aa.Button.MouseButton1Click:Connect(function()
 		loadstring(aa.Box.Text)();
 	end)
 end
-createtab("Debuggers", aaa, nil)
-createtab("Executor", executortabfunctions, nil)
+_G.createtab("Debuggers", aaa, nil)
+_G.createtab("Executor", executortabfunctions, nil)

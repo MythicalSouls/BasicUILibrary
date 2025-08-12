@@ -1,5 +1,5 @@
 local AbsolutionExecutorandDebuggers = Instance.new("ScreenGui")
-AbsolutionExecutorandDebuggers.Name = "Absolution - Executor and Debuggers"
+AbsolutionExecutorandDebuggers.Name = "BasicUILibrary"
 AbsolutionExecutorandDebuggers.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 local Frame = Instance.new("Frame")

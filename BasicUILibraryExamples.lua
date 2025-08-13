@@ -3,7 +3,7 @@ local function aaa()
 	singlebutton("Developer Console", options, function()
 		game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
 	end, nil)
-	singlebutton("Set transparent parts to non-transparent", DoThing, function()
+	singlebutton("Set transparent parts to non-transparent", options, function()
 		for i,v in pairs(workspace:GetDescendants()) do
 			if v:IsA("BasePart") then
 				if v.Transparency >= 1 then

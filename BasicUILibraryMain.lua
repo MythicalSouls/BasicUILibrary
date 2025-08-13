@@ -141,7 +141,8 @@ UIS.InputChanged:Connect(function(input)
 end)
 
 local scrf = frame:FindFirstChild("ScrollingFrame")
-function singlebutton(context:string, parent:Instance, thingtodo:thread, args:any)
+
+getgenv().singlebutton = function(context:string, parent:Instance, thingtodo:thread, args:any)
 	args = args or nil
 	local executor = Instance.new("TextButton")
 	executor.Name = context
@@ -177,47 +178,7 @@ function singlebutton(context:string, parent:Instance, thingtodo:thread, args:an
 	return executor
 end
 
-function singlebuttonwithtextbox(context:string, parent:Instance, thingtodo:thread, args:any)
-	args = args or nil
-	local a = singlebutton(context, parent) or _G.singlebutton(context, parent)
-	local aaaaadsdsadTextbox = Instance.new("TextBox")
-	aaaaadsdsadTextbox.Name = context.." [Textbox]"
-	aaaaadsdsadTextbox.Size = UDim2.new(0, 860, 0, 54)
-	aaaaadsdsadTextbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	aaaaadsdsadTextbox.BorderSizePixel = 0
-	aaaaadsdsadTextbox.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
-	aaaaadsdsadTextbox.FontSize = Enum.FontSize.Size14
-	aaaaadsdsadTextbox.TextWrapped = true
-	aaaaadsdsadTextbox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
-	aaaaadsdsadTextbox.TextWrap = true
-	aaaaadsdsadTextbox.TextSize = 14
-	aaaaadsdsadTextbox.TextColor3 = Color3.fromRGB(0, 0, 0)
-	aaaaadsdsadTextbox.PlaceholderText = "Enter ("..context..")"
-	aaaaadsdsadTextbox.Text = ""
-	aaaaadsdsadTextbox.CursorPosition = -1
-	aaaaadsdsadTextbox.Font = Enum.Font.Sarpanch
-	aaaaadsdsadTextbox.TextScaled = true
-
-	local UICorner = Instance.new("UICorner")
-	UICorner.Parent = aaaaadsdsadTextbox
-
-	local UIStroke = Instance.new("UIStroke")
-	UIStroke.Thickness = 3
-	UIStroke.Parent = aaaaadsdsadTextbox
-
-	local UIStroke1 = Instance.new("UIStroke")
-	UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke1.Thickness = 3
-	UIStroke1.Parent = aaaaadsdsadTextbox
-
-	aaaaadsdsadTextbox.Parent = parent
-	a.MouseButton1Click:Connect(function()
-		thingtodo(args)
-	end)
-	return {["Button"] = a, ["Box"] = aaaaadsdsadTextbox}
-end
-
-function createtab(context:string, thingtodo:thread, args:any)
+getgenv().createtab = function(context:string, thingtodo:thread, args:any)
 	args = args or nil
 	local contextt = Instance.new("TextButton")
 	contextt.Name = context
@@ -260,12 +221,80 @@ function createtab(context:string, thingtodo:thread, args:any)
 	end)
 	return contextt
 end
+getgenv().singlebuttonwithtextbox = function(context:string, parent:Instance, thingtodo:thread, args:any)
+	args = args or nil
+	local a = getgenv().singlebutton(context, parent) or getgenv().singlebutton(context, parent)
+	local aaaaadsdsadTextbox = Instance.new("TextBox")
+	aaaaadsdsadTextbox.Name = context.." [Textbox]"
+	aaaaadsdsadTextbox.Size = UDim2.new(0, 860, 0, 54)
+	aaaaadsdsadTextbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	aaaaadsdsadTextbox.BorderSizePixel = 0
+	aaaaadsdsadTextbox.BackgroundColor3 = Color3.fromRGB(67, 67, 67)
+	aaaaadsdsadTextbox.FontSize = Enum.FontSize.Size14
+	aaaaadsdsadTextbox.TextWrapped = true
+	aaaaadsdsadTextbox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+	aaaaadsdsadTextbox.TextWrap = true
+	aaaaadsdsadTextbox.TextSize = 14
+	aaaaadsdsadTextbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+	aaaaadsdsadTextbox.PlaceholderText = "Enter ("..context..")"
+	aaaaadsdsadTextbox.Text = ""
+	aaaaadsdsadTextbox.CursorPosition = -1
+	aaaaadsdsadTextbox.Font = Enum.Font.Sarpanch
+	aaaaadsdsadTextbox.TextScaled = true
 
-_G.createtab = createtab
-_G.singlebuttonwithtextbox = singlebuttonwithtextbox
-_G.singlebutton = singlebutton
-_G.options = DoThing
-_G.frame = frame
-_G.maingui = gui
+	local UICorner = Instance.new("UICorner")
+	UICorner.Parent = aaaaadsdsadTextbox
+
+	local UIStroke = Instance.new("UIStroke")
+	UIStroke.Thickness = 3
+	UIStroke.Parent = aaaaadsdsadTextbox
+
+	local UIStroke1 = Instance.new("UIStroke")
+	UIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+	UIStroke1.Thickness = 3
+	UIStroke1.Parent = aaaaadsdsadTextbox
+
+	aaaaadsdsadTextbox.Parent = parent
+	a.MouseButton1Click:Connect(function()
+		thingtodo(args)
+	end)
+	return {["Button"] = a, ["Box"] = aaaaadsdsadTextbox}
+end
+getgenv().options = DoThing
+getgenv().frame = frame
+getgenv().maingui = gui
+getgenv().scrf = ScrollingFrame
 
 warn("Documentation\nFunctions are stored in _G.\ncreatetab Function (name [string], function that will be excuted on click [thread or simply function], arguments of function [any]) returns the tab button.\nsinglebutton Function(name [string], function that will be excuted on click [thread or simply function, arguments of function [any]) returns the option button.\nsinglebuttonwithtextbox Function(name [string], function that will be excuted on click [thread or simply function, arguments of function [any]) returns button and textbox, it can be accessed with .Button and .Box.")
+
+local function aaa()
+	singlebutton("Developer Console", DoThing, function()
+		game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
+	end, nil)
+	singlebutton("RemoteEvent Inspection (Dev Console)", DoThing, function()
+		warn("activating RemoteEvent Inspection (Dev Console)")
+		local a
+		a = hookmetamethod(game, "__namecall", function(self, ...)
+			local b = getnamecallmethod()
+			local arglist = {...}
+			if b == "FireServer" then
+				print("calling script: "..tostring(getcallingscript(b):GetFullName()))
+				print("args: "..tostring(unpack(arglist)))
+				print("remote name: "..tostring(self:GetFullName()))
+				for i,v in pairs(arglist) do
+					print("type of argument #"..tostring(i)..": "..tostring(type(v)))
+				end
+			end
+			return a(self, ...)
+		end)
+		warn("activated RemoteEvent Inspection (Dev Console)")
+	end, nil)
+end
+local function executortabfunctions()
+	local aa = singlebuttonwithtextbox("Execute", DoThing, function() end, nil)
+	aa.Button.MouseButton1Click:Connect(function()
+		loadstring(aa.Box.Text)();
+	end)
+end
+createtab("Debuggers", aaa, nil)
+createtab("Executor", executortabfunctions, nil)

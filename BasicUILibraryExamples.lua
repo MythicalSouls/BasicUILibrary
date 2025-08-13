@@ -3,6 +3,15 @@ local function aaa()
 	singlebutton("Developer Console", options, function()
 		game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
 	end, nil)
+	singlebutton("Set transparent parts to non-transparent", DoThing, function()
+		for i,v in pairs(workspace:GetDescendants()) do
+			if v:IsA("BasePart") then
+				if v.Transparency >= 1 then
+					v.Transparency = 0
+				end
+			end
+		end
+	end, nil)
 	singlebutton("RemoteEvent Inspection (Dev Console)", options, function()
 		warn("activating RemoteEvent Inspection (Dev Console)")
 		local a

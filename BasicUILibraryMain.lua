@@ -233,6 +233,7 @@ getgenv().singlebuttonwithtextbox = function(context:string, parent:Instance, th
 	aaaaadsdsadTextbox.FontSize = Enum.FontSize.Size14
 	aaaaadsdsadTextbox.TextWrapped = true
 	aaaaadsdsadTextbox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+	aaaaadsdsadTextbox.TextColor3 = Color3.fromRGB(255, 255, 255)
 	aaaaadsdsadTextbox.TextWrap = true
 	aaaaadsdsadTextbox.TextSize = 14
 	aaaaadsdsadTextbox.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -265,4 +266,4 @@ getgenv().frame = frame
 getgenv().maingui = gui
 getgenv().scrf = ScrollingFrame
 
-warn("Documentation\nFunctions are stored in _G.\ncreatetab Function (name [string], function that will be excuted on click [thread or simply function], arguments of function [any]) returns the tab button.\nsinglebutton Function(name [string], function that will be excuted on click [thread or simply function, arguments of function [any]) returns the option button.\nsinglebuttonwithtextbox Function(name [string], function that will be excuted on click [thread or simply function, arguments of function [any]) returns button and textbox, it can be accessed with .Button and .Box.")
+warn("Documentation\nFunctions are stored in global exploit environment which means you can use functions directly without other steps.\ncreatetab Function (name [string], function that will be excuted on click [thread or simply function], arguments of function [any]) returns the tab button.\nsinglebutton Function(name [string], function that will be excuted on click [thread or simply function, arguments of function [any]) returns the option button.\nsinglebuttonwithtextbox Function(name [string], function that will be excuted on click [thread or simply function, arguments of function [any]) returns button and textbox, it can be accessed with .Button and .Box.")

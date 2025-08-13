@@ -266,35 +266,3 @@ getgenv().maingui = gui
 getgenv().scrf = ScrollingFrame
 
 warn("Documentation\nFunctions are stored in _G.\ncreatetab Function (name [string], function that will be excuted on click [thread or simply function], arguments of function [any]) returns the tab button.\nsinglebutton Function(name [string], function that will be excuted on click [thread or simply function, arguments of function [any]) returns the option button.\nsinglebuttonwithtextbox Function(name [string], function that will be excuted on click [thread or simply function, arguments of function [any]) returns button and textbox, it can be accessed with .Button and .Box.")
-
-local function aaa()
-	singlebutton("Developer Console", DoThing, function()
-		game:GetService("StarterGui"):SetCore("DevConsoleVisible", true)
-	end, nil)
-	singlebutton("RemoteEvent Inspection (Dev Console)", DoThing, function()
-		warn("activating RemoteEvent Inspection (Dev Console)")
-		local a
-		a = hookmetamethod(game, "__namecall", function(self, ...)
-			local b = getnamecallmethod()
-			local arglist = {...}
-			if b == "FireServer" then
-				print("calling script: "..tostring(getcallingscript(b):GetFullName()))
-				print("args: "..tostring(unpack(arglist)))
-				print("remote name: "..tostring(self:GetFullName()))
-				for i,v in pairs(arglist) do
-					print("type of argument #"..tostring(i)..": "..tostring(type(v)))
-				end
-			end
-			return a(self, ...)
-		end)
-		warn("activated RemoteEvent Inspection (Dev Console)")
-	end, nil)
-end
-local function executortabfunctions()
-	local aa = singlebuttonwithtextbox("Execute", DoThing, function() end, nil)
-	aa.Button.MouseButton1Click:Connect(function()
-		loadstring(aa.Box.Text)();
-	end)
-end
-createtab("Debuggers", aaa, nil)
-createtab("Executor", executortabfunctions, nil)
